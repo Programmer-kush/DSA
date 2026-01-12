@@ -1,14 +1,4 @@
 class Solution {
-    public int distance(int x1,int y1,int x2,int y2){
-        int temp1=x1-x2;
-        temp1*=temp1;
-
-        int temp2=y1-y2;
-        temp2*=temp2;
-
-        int ans=temp1+temp2;
-        return (int) Math.sqrt(ans);
-    }
     public int minTimeToVisitAllPoints(int[][] points) {
         int total=0;
 
