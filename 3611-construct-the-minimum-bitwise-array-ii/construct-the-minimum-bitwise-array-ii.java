@@ -10,7 +10,6 @@ class Solution {
             n=n>>1;
             pos++;
         }
-        System.out.println("pos for " + num + " is " + pos);
 
         return num ^ (1 << pos);
     }
