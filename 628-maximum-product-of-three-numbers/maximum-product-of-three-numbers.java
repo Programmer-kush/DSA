@@ -1,13 +1,27 @@
 class Solution {
     public int maximumProduct(int[] nums) {
-        Arrays.sort(nums);
-        int ans=1;
-        for(int i=nums.length-1;i>=nums.length-3;i--){
-            ans=ans*nums[i];
+        PriorityQueue<Integer> largest = new PriorityQueue<>();
+        PriorityQueue<Integer> smallest = new PriorityQueue<>((a, b) -> b - a);
+
+        for (int x : nums) {
+            largest.offer(x);
+            if (largest.size() > 3) largest.poll();
+
+            smallest.offer(x);
+            if (smallest.size() > 2) smallest.poll();
         }
-        int neg=1;
-        int n=nums.length;
-        neg=nums[0]*nums[1]*nums[n-1];
-        return Math.max(ans,neg);
+
+        int[] max = new int[3];
+        for (int i = 2; i >= 0; i--) {
+            max[i] = largest.poll();
+        }
+
+        int min1 = smallest.poll();
+        int min2 = smallest.poll();
+
+        int p1 = max[0] * max[1] * max[2];
+        int p2 = max[0] * min1 * min2;
+
+        return Math.max(p1, p2);
     }
 }
